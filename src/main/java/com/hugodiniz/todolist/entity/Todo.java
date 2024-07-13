@@ -1,6 +1,7 @@
 package com.hugodiniz.todolist.entity;
 
 import jakarta.persistence.*;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Entity
 @Table(name = "tb_todos")
@@ -21,6 +22,13 @@ public class Todo {
 
     public Todo(Long id, String name, String description, boolean status, TodoPriority priority) {
         this.id = id;
+        this.name = name;
+        this.description = description;
+        this.status = status;
+        this.priority = priority;
+    }
+
+    public Todo(String name, String description, boolean status, TodoPriority priority) {
         this.name = name;
         this.description = description;
         this.status = status;
