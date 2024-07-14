@@ -19,8 +19,9 @@ public class TodoService {
     }
 
     public List<Todo> getTodos() {
-        List<Todo> list = repository.findAll().stream().sorted((t1,t2) -> t1.getPriority().getId().compareTo(t2.getPriority().getId())).toList();
-
+        List<Todo> list = repository.findAll().stream().sorted(
+                (t1,t2) -> t1.getPriority().getId().compareTo(t2.getPriority().getId()))
+                .toList();
         return list;
     }
 
@@ -33,5 +34,11 @@ public class TodoService {
         currentTodo.setPriority(data.priority());
 
         return repository.save(currentTodo);
+    }
+
+    public void deleteTodo(Long id) {
+        var todo = repository.findById(id).orElseThrow();
+
+        repository.delete(todo);
     }
 }
