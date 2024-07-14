@@ -23,4 +23,15 @@ public class TodoService {
 
         return list;
     }
+
+    public Todo updateTodo(Long id, TodoRequest data) {
+        var currentTodo = repository.findById(id).orElseThrow();
+
+        currentTodo.setName(data.name());
+        currentTodo.setDescription(data.description());
+        currentTodo.setStatus(data.status());
+        currentTodo.setPriority(data.priority());
+
+        return repository.save(currentTodo);
+    }
 }

@@ -29,4 +29,11 @@ public class TodoController {
         var obj = service.getTodos();
         return ResponseEntity.ok(obj);
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Todo> updateTodo(@PathVariable Long id, @RequestBody @Valid TodoRequest data) {
+        var obj = service.updateTodo(id,data);
+
+        return ResponseEntity.ok(obj);
+    }
 }
