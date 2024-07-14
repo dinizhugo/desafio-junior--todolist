@@ -11,7 +11,7 @@ public class Todo {
 
     private String name;
     private String description;
-    private boolean status;
+    private Boolean status;
 
     @Enumerated(EnumType.STRING)
     private TodoPriority priority;

@@ -27,13 +27,10 @@ public class TodoService {
 
     public Todo updateTodo(Long id, TodoRequest data) {
         var currentTodo = repository.findById(id).orElseThrow();
+        var todo = data.toTodo();
+        todo.setId(currentTodo.getId());
 
-        currentTodo.setName(data.name());
-        currentTodo.setDescription(data.description());
-        currentTodo.setStatus(data.status());
-        currentTodo.setPriority(data.priority());
-
-        return repository.save(currentTodo);
+        return repository.save(todo);
     }
 
     public void deleteTodo(Long id) {

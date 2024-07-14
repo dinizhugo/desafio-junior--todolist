@@ -19,7 +19,7 @@ public class TodoController {
     private TodoService service;
 
     @PostMapping
-    public ResponseEntity<Todo> createNewTodo(@RequestBody @Valid TodoRequest data) {
+    public ResponseEntity<Todo> createNewTodo(@Valid @RequestBody TodoRequest data) {
         var obj = service.createNewTodo(data);
         return ResponseEntity.status(HttpStatus.CREATED).body(obj);
     }
@@ -31,7 +31,7 @@ public class TodoController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Todo> updateTodo(@PathVariable Long id, @RequestBody @Valid TodoRequest data) {
+    public ResponseEntity<Todo> updateTodo(@PathVariable Long id, @Valid @RequestBody TodoRequest data) {
         var obj = service.updateTodo(id,data);
 
         return ResponseEntity.ok(obj);
