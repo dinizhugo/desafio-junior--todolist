@@ -2,6 +2,7 @@ package com.hugodiniz.todolist.service;
 
 import com.hugodiniz.todolist.dto.TodoRequest;
 import com.hugodiniz.todolist.entity.Todo;
+import com.hugodiniz.todolist.exceptions.TodoNotFoundException;
 import com.hugodiniz.todolist.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class TodoService {
     }
 
     public Todo updateTodo(Long id, TodoRequest data) {
-        var currentTodo = repository.findById(id).orElseThrow();
+        var currentTodo = repository.findById(id).orElseThrow(() -> new TodoNotFoundException("Todo not found."));
         var todo = data.toTodo();
         todo.setId(currentTodo.getId());
 
@@ -34,7 +35,7 @@ public class TodoService {
     }
 
     public void deleteTodo(Long id) {
-        var todo = repository.findById(id).orElseThrow();
+        var todo = repository.findById(id).orElseThrow(() -> new TodoNotFoundException("Todo not found."));
 
         repository.delete(todo);
     }
