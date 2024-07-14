@@ -1,7 +1,6 @@
 package com.hugodiniz.todolist.entity;
 
 import jakarta.persistence.*;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Entity
 @Table(name = "tb_todos")
